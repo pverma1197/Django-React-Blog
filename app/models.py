@@ -1,8 +1,13 @@
 import uuid
-from django.contrib.auth.models import User
+
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
+from django.contrib.auth.models import User
 
+
+# class Employee(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     department = models.CharField(max_length=100)
 
 # Create your models here.
 # class BaseModelUuid(models.Model):
@@ -24,3 +29,8 @@ class Blog(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     tags = ArrayField(models.CharField(max_length=50), null=True)
+
+# class User(BaseUser):
+#
+#     def __str__(self):
+#         return self.username

@@ -31,3 +31,27 @@ class BlogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = ('uuid', 'heading', 'article', 'image', 'user', 'tags')
+
+
+class GetBlogSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+
+    class Meta:
+        model = Blog
+        fields = ('uuid', 'heading', 'article', 'image', 'user', 'tags')
+
+
+class BlogListSerializer(serializers.ModelSerializer):
+    # user = serializers.ReadOnlyField(source='user.username')
+
+    class Meta:
+        model = Blog
+        fields = ('heading', 'article', 'image', 'tags')
+
+
+class BlogViewSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+
+    class Meta:
+        model = Blog
+        fields = ('heading', 'article', 'image', 'tags', 'user')

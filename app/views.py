@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import UserSerializer, BlogSerializer
+from .serializers import UserSerializer, BlogSerializer, GetBlogSerializer, BlogListSerializer, BlogViewSerializer
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Blog
@@ -57,5 +57,35 @@ class GetBlog(APIView):
 
     def get(self, request):
         items = Blog.objects.all()
-        serializer = BlogSerializer(items, many=True)
+        serializer = GetBlogSerializer(items, many=True)
+        return Response(serializer.data)
+
+
+# Get User Blog data API
+class BlogList(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, id):
+        items = Blog.objects.filter(user=id)
+        serializer = BlogListSerializer(items, many=True)
+        return Response(serializer.data)
+
+
+# Blog view API
+class BlogView(APIView):
+    # permission_classes = (IsAuthenticated,)
+
+    def get(self, request, uuid):
+        data = Blog.objects.filter(uuid=uuid)
+        serializer = BlogViewSerializer(data, many=True)
+        return Response(serializer.data)
+
+
+# tag filter API
+class Tag(APIView):
+    # permission_classes = (IsAuthenticated,)
+
+    def get(self, request, tag):
+        a = Blog.objects.filter(tags__contains=[tag])
+        serializer = BlogViewSerializer(a, many=True)
         return Response(serializer.data)
