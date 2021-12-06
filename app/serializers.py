@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from .models import Blog
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -23,3 +24,10 @@ class UserSerializer(serializers.ModelSerializer):
                 setattr(instance, attr, value)
         instance.save()
         return instance
+
+
+class BlogSerializer(serializers.ModelSerializer):
+    # user = UserSerializer(read_only=True)
+    class Meta:
+        model = Blog
+        fields = ('uuid', 'heading', 'article', 'image', 'user', 'tags')

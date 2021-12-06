@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import *
-
+from django.conf.urls.static import static
 urlpatterns = [
     path('sample/', HelloView.as_view(), name='sample'),
-    path('register/', UserCreate.as_view(), name='userdata'),
-]
+    path('register/', UserRegister.as_view(), name='userdata'),
+    path('create_blog/', CreateBlog.as_view(), name='create_blog'),
+    path('get_blog/', GetBlog.as_view(), name='get_blog'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
