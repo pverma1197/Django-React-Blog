@@ -9,4 +9,4 @@ urlpatterns = [
     path('blog_list/<int:id>/', BlogList.as_view(), name='blog_list'),
     path('blog/<uuid:uuid>/', BlogView.as_view(), name='blog'),
     path('tag/<str:tag>/', Tag.as_view(), name='tag'),
-]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
