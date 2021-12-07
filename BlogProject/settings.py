@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'BlogProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'blogdatabase',
-        'USER': 'postgres',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME', 'de3mhvku8jv8'),
+        'USER': os.environ.get('USER', 'smxokqsrimtond'),
+        'PASSWORD': os.environ.get('PASSWORD', 'e3103423ee3f6ff4008241e334baf1e9c867dbe6bf0da965d356010f771c6a06'),
+        'HOST': os.environ.get('HOST', 'ec2-52-71-217-158.compute-1.amazonaws.com'),
+        'PORT': os.environ.get('PORT', '5432'),
     }
 }
 
