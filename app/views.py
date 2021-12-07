@@ -25,11 +25,11 @@ class UserRegister(APIView):
         if serializer.is_valid():
             serializer.save()
             # mail sending code
-            user_name = request.data['username']
-            subject = "Register Successful Mail"
-            msg = "Hello  " + user_name + "! , you are successful register in our website. Hope you are enjoy blog reading."
-            to = request.data['email']
-            send_email = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+#             user_name = request.data['username']
+#             subject = "Register Successful Mail"
+#             msg = "Hello  " + user_name + "! , you are successful register in our website. Hope you are enjoy blog reading."
+#             to = request.data['email']
+#             send_email = send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
             response_msg = {'message': 'User register Sucessfully'}
             return Response(response_msg, content_type='application/json')
         return Response(serializer.errors)
